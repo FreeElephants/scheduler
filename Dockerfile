@@ -1,4 +1,6 @@
-FROM php:8.3-cli
+ARG PHP_VERSION=8.4
+
+FROM php:${PHP_VERSION}-cli
 
 # Composer requirements begin
 RUN apt-get update \
@@ -8,7 +10,7 @@ RUN apt-get update \
 
 RUN docker-php-ext-install zip
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 # Composer requirements end
 
