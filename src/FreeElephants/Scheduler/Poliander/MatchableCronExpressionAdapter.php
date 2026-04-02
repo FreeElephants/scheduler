@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace FreeElephants\Scheduler\Poliander;
 
-use FreeElephants\Scheduler\MatchableToDateTime;
+use FreeElephants\Scheduler\Datable;
 use Poliander\Cron\CronExpression;
 
-class MatchableCronExpressionAdapter extends CronExpression implements MatchableToDateTime
+class MatchableCronExpressionAdapter extends CronExpression implements Datable
 {
     function isMatch(\DateTimeInterface $dateTime): bool
     {

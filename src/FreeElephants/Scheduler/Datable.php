@@ -2,7 +2,7 @@
 
 namespace FreeElephants\Scheduler;
 
-interface MatchableToDateTime
+interface Datable
 {
     function isMatch(\DateTimeInterface $dateTime): bool;
 }

@@ -5,7 +5,7 @@ namespace FreeElephants\Scheduler;
 class CronSchedule
 {
     /**
-     * @var \SplObjectStorage<MatchableToDateTime, TaskInterface>
+     * @var \SplObjectStorage<Datable, TaskInterface>
      */
     private \SplObjectStorage $tasks;
 
@@ -14,9 +14,9 @@ class CronSchedule
         $this->tasks = new \SplObjectStorage();
     }
 
-    public function addTask(MatchableToDateTime $cronExpression, TaskInterface $task)
+        public function addTask(Datable $datable, TaskInterface $task)
     {
-        $this->tasks->offsetSet($cronExpression, $task);
+        $this->tasks->offsetSet($datable, $task);
     }
 
     public function hasTasks(\DateTimeInterface $dateTime): bool

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace FreeElephants\Scheduler;
 
-class SpecificDateTime implements MatchableToDateTime
+class SpecificDateTime implements Datable
 {
 
     private \DateTimeInterface $dateTime;
