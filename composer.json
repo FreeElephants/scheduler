@@ -15,5 +15,8 @@
     	"psr-4": {
             "FreeElephants\\Scheduler\\": "tests/FreeElephants/Scheduler"
     	}
+    },
+    "require": {
+        "poliander/cron": "^3.3"
     }
 }

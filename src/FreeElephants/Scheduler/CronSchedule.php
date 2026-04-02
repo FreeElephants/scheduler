@@ -2,13 +2,10 @@
 
 namespace FreeElephants\Scheduler;
 
-use Econ\World\Domain\Time\TaskInterface;
-use Poliander\Cron\CronExpression;
-
 class CronSchedule
 {
     /**
-     * @var \SplObjectStorage<CronExpression, TaskInterface>
+     * @var \SplObjectStorage<MatchableToDateTime, TaskInterface>
      */
     private \SplObjectStorage $tasks;
 
@@ -17,7 +14,7 @@ class CronSchedule
         $this->tasks = new \SplObjectStorage();
     }
 
-    public function addTask(CronExpression $cronExpression, TaskInterface $task)
+    public function addTask(MatchableToDateTime $cronExpression, TaskInterface $task)
     {
         $this->tasks->offsetSet($cronExpression, $task);
     }
@@ -25,7 +22,7 @@ class CronSchedule
     public function hasTasks(\DateTimeInterface $dateTime): bool
     {
         foreach ($this->tasks as $cronExpression) {
-            if ($cronExpression->isMatching($dateTime)) {
+            if ($cronExpression->isMatch($dateTime)) {
                 return true;
             }
         }
@@ -40,7 +37,7 @@ class CronSchedule
     {
         $matchedTasks = [];
         foreach ($this->tasks as $cronExpression) {
-            if ($cronExpression->isMatching($dateTime)) {
+            if ($cronExpression->isMatch($dateTime)) {
                 $matchedTasks[] = $this->tasks->offsetGet($cronExpression);
             }
         }
