@@ -1,5 +1,5 @@
 {
-    "name": "samizdam/skeleton",
+    "name": "free-elephants/scheduler",
     "description": "",
     "license": "BSD-2-Clause",
     "authors": [],
@@ -8,12 +8,12 @@
     },
     "autoload": {
     	"psr-4": {
-            "Samizam\\Skeleton\\": "src/Samizdam/Skeleton"
+            "FreeElephants\\Scheduler\\": "src/FreeElephants/Scheduler"
     	}
     },
     "autoload-dev": {
     	"psr-4": {
-            "Samizdam\\Skeleton\\": "tests/Samizdam/Skeleton"
+            "FreeElephants\\Scheduler\\": "tests/FreeElephants/Scheduler"
     	}
     }
 }

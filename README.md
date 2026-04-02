@@ -1,7 +1,18 @@
-# php-project-skeleton
+# PHP Async Scheduler for crontab and specific dates
 
-Шаблон для простых проектов на php, с поддержкой минимально необходимого локального окружения в docker.
+## Requirements:
 
-Статья на хабре, что это такое: [Докеризированные команды и make, как стандартная точка в проект. Быстрый способ запуска разработки проекта на php](https://habr.com/ru/post/687992/).
+- php 7.4 | 8+
 
-После клонирования (форка) необходимо заменить имя вендора (samizdam) и проект (skeleton) в composer.json и dev.env на свои.
+## Installation:
+
+As lib:
+
+```
+composer require free-elephants/scheduler
+```
+
+## For Development
+
+See Makefile. 
+
