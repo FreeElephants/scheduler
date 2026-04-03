@@ -17,6 +17,6 @@
     	}
     },
     "require": {
-        "poliander/cron": "^3.3"
+        "poliander/cron": "^3"
     }
 }
