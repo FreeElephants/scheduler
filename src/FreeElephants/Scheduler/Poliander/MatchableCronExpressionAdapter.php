@@ -13,4 +13,14 @@ class MatchableCronExpressionAdapter extends CronExpression implements Datable
     {
         return $this->isMatching($dateTime);
     }
+
+    function __toString(): string
+    {
+        return $this->expression;
+    }
+
+    function isDisposable(): bool
+    {
+        return false;
+    }
 }
