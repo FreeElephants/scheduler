@@ -9,4 +9,6 @@ interface Datable
     function __toString(): string;
 
     function isDisposable(): bool;
+
+    function getNearest(): \DateTimeInterface;
 }

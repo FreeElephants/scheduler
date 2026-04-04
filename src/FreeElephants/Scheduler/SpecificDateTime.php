@@ -33,4 +33,9 @@ class SpecificDateTime implements Datable
     {
         return true;
     }
+
+    function getNearest(): \DateTimeInterface
+    {
+        return $this->dateTime;
+    }
 }

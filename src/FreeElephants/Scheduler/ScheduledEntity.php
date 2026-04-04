@@ -44,4 +44,9 @@ class ScheduledEntity implements TaskInterface, Datable
     {
         return $this->datable->isDisposable();
     }
+
+    function getNearest(): \DateTimeInterface
+    {
+        return $this->datable->getNearest();
+    }
 }
