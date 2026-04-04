@@ -6,7 +6,7 @@ interface Datable
 {
     function isMatch(\DateTimeInterface $dateTime): bool;
 
-    function __toString(): string;
+    function getValue(): string;
 
     function isDisposable(): bool;
 

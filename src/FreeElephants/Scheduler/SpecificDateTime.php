@@ -23,7 +23,7 @@ class SpecificDateTime implements Datable
         return $this->dateTime->diff($dateTime, true)->s < $this->diffSecLimit;
     }
 
-    function __toString(): string
+    function getValue(): string
     {
         return (string) $this->dateTime->getTimestamp();
     }

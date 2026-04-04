@@ -18,7 +18,7 @@ class Scheduler
         $executed = [];
         foreach ($this->tasksStorage->getTasks() as $entity) {
             if ($entity->isMatch($dateTime)) {
-                $entity->execute();
+                $entity->getTask()->execute();
                 $executed[] = $entity;
                 if ($entity->isDisposable()) {
                     $this->tasksStorage->removeEntity($entity);

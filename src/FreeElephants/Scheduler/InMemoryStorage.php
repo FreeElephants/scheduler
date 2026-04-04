@@ -9,7 +9,7 @@ class InMemoryStorage implements TaskStorageInterface
 
     public function addTask(ScheduledEntity $scheduledEntity): void
     {
-        $this->tasks[$scheduledEntity->getName()] = $scheduledEntity;
+        $this->tasks[$this->buildKey($scheduledEntity)] = $scheduledEntity;
     }
 
     public function getTasks(): iterable
@@ -19,6 +19,11 @@ class InMemoryStorage implements TaskStorageInterface
 
     public function removeEntity(ScheduledEntity $scheduledEntity): void
     {
-        unset($this->tasks[$scheduledEntity->getName()]);
+        unset($this->tasks[$this->buildKey($scheduledEntity)]);
+    }
+
+    private function buildKey(ScheduledEntity $scheduledEntity)
+    {
+        return $scheduledEntity->getTask()->getName() . '_' . $scheduledEntity->getDatable()->getValue();
     }
 }

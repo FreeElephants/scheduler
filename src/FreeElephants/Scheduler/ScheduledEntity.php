@@ -5,7 +5,7 @@ namespace FreeElephants\Scheduler;
 
 use DateTimeInterface;
 
-class ScheduledEntity implements TaskInterface, Datable
+class ScheduledEntity
 {
     private Datable $datable;
     private TaskInterface $task;
@@ -19,25 +19,9 @@ class ScheduledEntity implements TaskInterface, Datable
         $this->task = $task;
     }
 
-    public function getName(): string
-    {
-        $name = $this->task->getName();
-        return sprintf('%s.%s', $name, $this->datable);
-    }
-
     public function isMatch(DateTimeInterface $dateTime): bool
     {
         return $this->datable->isMatch($dateTime);
-    }
-
-    public function execute(): void
-    {
-        $this->task->execute();
-    }
-
-    function __toString(): string
-    {
-        return $this->getName();
     }
 
     function isDisposable(): bool
@@ -45,8 +29,13 @@ class ScheduledEntity implements TaskInterface, Datable
         return $this->datable->isDisposable();
     }
 
-    function getNearest(): \DateTimeInterface
+    public function getTask(): TaskInterface
     {
-        return $this->datable->getNearest();
+        return $this->task;
+    }
+
+    public function getDatable(): Datable
+    {
+        return $this->datable;
     }
 }
