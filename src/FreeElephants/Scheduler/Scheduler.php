@@ -13,6 +13,9 @@ class Scheduler
         $this->tasksStorage = $taskStorage ?: new InMemoryStorage();
     }
 
+    /**
+     * @return ScheduledEntityInterface[]
+     */
     public function execute(\DateTime $dateTime): array
     {
         $executed = [];

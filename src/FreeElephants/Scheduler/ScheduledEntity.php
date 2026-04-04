@@ -5,7 +5,7 @@ namespace FreeElephants\Scheduler;
 
 use DateTimeInterface;
 
-class ScheduledEntity
+class ScheduledEntity implements ScheduledEntityInterface
 {
     private Datable $datable;
     private TaskInterface $task;

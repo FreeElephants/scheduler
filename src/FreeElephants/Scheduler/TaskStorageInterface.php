@@ -5,13 +5,13 @@ namespace FreeElephants\Scheduler;
 
 interface TaskStorageInterface
 {
-    public function addTask(ScheduledEntity $scheduledEntity): void;
+    public function addTask(ScheduledEntityInterface $scheduledEntity): void;
 
     /**
-     * @return ScheduledEntity[]
+     * @return ScheduledEntityInterface[]
      */
     public function getTasks(): iterable;
 
-    public function removeEntity(ScheduledEntity $scheduledEntity): void;
+    public function removeEntity(ScheduledEntityInterface $scheduledEntity): void;
 
 }
