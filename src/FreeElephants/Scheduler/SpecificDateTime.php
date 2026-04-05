@@ -20,7 +20,7 @@ class SpecificDateTime implements Datable
 
     function isMatch(\DateTimeInterface $dateTime): bool
     {
-        return $this->dateTime->diff($dateTime, true)->s < $this->diffSecLimit;
+        return $this->diffSecLimit > abs($this->dateTime->getTimestamp() - $dateTime->getTimestamp());
     }
 
     function getValue(): string
