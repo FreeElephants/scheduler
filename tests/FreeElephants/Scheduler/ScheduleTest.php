@@ -12,7 +12,7 @@ class ScheduleTest extends TestCase
     public function testExecute(): void
     {
         $taskStorage = new InMemoryStorage();
-        $scheduleExecutor = new Scheduler($taskStorage, new class implements TaskExecutorInterface {
+        $scheduleExecutor = new Scheduler(new class implements TaskExecutorInterface {
             public function execute(TaskInterface $task): void
             {
                 /**
@@ -20,7 +20,7 @@ class ScheduleTest extends TestCase
                  */
                 $task->execute();
             }
-        });
+        }, $taskStorage);
         $minuteTask = new TestTask();
         $hourTask = new TestTask();
         $notCalledTask = new TestTask();

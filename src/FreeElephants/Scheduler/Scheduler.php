@@ -5,15 +5,15 @@ namespace FreeElephants\Scheduler;
 class Scheduler
 {
     private TaskStorageInterface $tasksStorage;
-    private ?TaskExecutorInterface $taskExecutor;
+    private TaskExecutorInterface $taskExecutor;
 
     public function __construct(
-        ?TaskStorageInterface $taskStorage = null,
-        ?TaskExecutorInterface $taskExecutor = null
+        TaskExecutorInterface $taskExecutor,
+        ?TaskStorageInterface $taskStorage = null
     )
     {
-        $this->tasksStorage = $taskStorage ?: new InMemoryStorage();
         $this->taskExecutor = $taskExecutor;
+        $this->tasksStorage = $taskStorage ?: new InMemoryStorage();
     }
 
     /**
