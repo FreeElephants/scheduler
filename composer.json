@@ -4,7 +4,7 @@
     "license": "BSD-2-Clause",
     "authors": [],
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": ">=9.6.34"
     },
     "autoload": {
     	"psr-4": {
