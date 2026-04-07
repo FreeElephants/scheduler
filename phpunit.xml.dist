@@ -4,7 +4,7 @@
         bootstrap="vendor/autoload.php"
         backupGlobals="false"
         processIsolation="false"
-        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/12.0/phpunit.xsd"
 >
     <testsuites>
         <testsuite name="unit">
@@ -12,14 +12,15 @@
         </testsuite>
     </testsuites>
 
-    <coverage processUncoveredFiles="true">
+    <source restrictNotices="true" restrictWarnings="true">
         <include>
-            <directory suffix=".php">src/</directory>
+            <directory>src</directory>
         </include>
-<!--
+    </source>
+    <coverage includeUncoveredFiles="true">
         <report>
-            <html outputDirectory="tests/_coverage" lowUpperBound="35" highLowerBound="70"/>
+            <html outputDirectory="_coverage" lowUpperBound="70" highLowerBound="99"/>
+            <text outputFile="php://stdout"/>
         </report>
--->
     </coverage>
 </phpunit>
