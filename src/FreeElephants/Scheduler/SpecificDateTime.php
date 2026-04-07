@@ -6,7 +6,6 @@ namespace FreeElephants\Scheduler;
 
 class SpecificDateTime implements Datable
 {
-
     private \DateTimeInterface $dateTime;
     private int $diffSecLimit;
 
@@ -21,6 +20,22 @@ class SpecificDateTime implements Datable
 
     function isMatch(\DateTimeInterface $dateTime): bool
     {
-        return $this->dateTime->diff($dateTime, true)->s < $this->diffSecLimit;
+        return $this->diffSecLimit > abs($this->dateTime->getTimestamp() - $dateTime->getTimestamp());
+    }
+
+    function getValue(): string
+    {
+        return (string) $this->dateTime->getTimestamp();
+    }
+
+
+    function isDisposable(): bool
+    {
+        return true;
+    }
+
+    function getNearest(): \DateTimeInterface
+    {
+        return $this->dateTime;
     }
 }

@@ -8,9 +8,11 @@
 .env
 
 # PHPUnit
+.phpunit.cache
 .phpunit.result.cache
 phpunit.xml
 tests/_coverage
 
 # composer
+composer.lock
 vendor/

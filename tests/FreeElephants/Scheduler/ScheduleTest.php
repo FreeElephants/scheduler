@@ -7,19 +7,28 @@ namespace FreeElephants\Scheduler;
 use FreeElephants\Scheduler\Poliander\MatchableCronExpressionAdapter;
 use PHPUnit\Framework\TestCase;
 
-class CronScheduleTest extends TestCase
+class ScheduleTest extends TestCase
 {
     public function testExecute(): void
     {
-        $scheduleExecutor = new CronSchedule();
+        $taskStorage = new InMemoryStorage();
+        $scheduleExecutor = new Scheduler(new class implements TaskExecutorInterface {
+            public function execute(TaskInterface $task): void
+            {
+                /**
+                 * @var TestTask $task
+                 */
+                $task->execute();
+            }
+        }, $taskStorage);
         $minuteTask = new TestTask();
         $hourTask = new TestTask();
         $notCalledTask = new TestTask();
 
-        $scheduleExecutor->addTask(new MatchableCronExpressionAdapter('* * * * *'), $minuteTask);
-        $scheduleExecutor->addTask(new MatchableCronExpressionAdapter('1 * * * *'), $minuteTask);
-        $scheduleExecutor->addTask(new MatchableCronExpressionAdapter('1 1 * * *'), $hourTask);
-        $scheduleExecutor->addTask(new MatchableCronExpressionAdapter('5 5 * * *'), $notCalledTask);
+        $taskStorage->addTask(new ScheduledEntity($minuteTask, new MatchableCronExpressionAdapter('* * * * *')));
+        $taskStorage->addTask(new ScheduledEntity($minuteTask, new MatchableCronExpressionAdapter('1 * * * *')));
+        $taskStorage->addTask(new ScheduledEntity($hourTask, new MatchableCronExpressionAdapter('1 1 * * *')));
+        $taskStorage->addTask(new ScheduledEntity($notCalledTask, new MatchableCronExpressionAdapter('5 5 * * *')));
 
         $tasks = $scheduleExecutor->execute(new \DateTime('2024-12-06 01:01:01'));
 
